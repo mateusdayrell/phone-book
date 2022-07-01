@@ -1,0 +1,46 @@
+<%- include('includes/header') %>
+    <%- include('includes/nav') %>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3"></div>
+
+                <div class="col-lg-6 my-4">
+                    <h1 class="display-4 text-center mb-4">Cadastro</h1>
+
+                    <%- include('includes/messages') %>
+
+                    <div class="card mt-4">
+                        <p class="card-header text-center lead">Faça o seu cadastro abaixo</p>
+                        <div class="card-body">
+                          <form action="/register" method="POST">
+                            <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+                            <div class="mb-3">
+                                <label class="form-label">Nome</label>
+                                <input type="text" class="form-control" name="name" aria-describedby="nameHelp">
+                                <div id="nameHelp" class="form-text">Nome completo.</div>
+                              </div>
+                            <div class="mb-3">
+                              <label class="form-label">Email</label>
+                              <input type="email" class="form-control" name="email" aria-describedby="emailHelp">
+                              <div id="emailHelp" class="form-text">Informe um email válido.</div>
+                            </div>
+                            <div class="mb-4">
+                              <label class="form-label">Senha</label>
+                              <input type="password" class="form-control" name="password" aria-describedby="passwordHelp">
+                              <div id="passwordHelp" class="form-text">A senha deve ter no mínimo 8 dígitos.</div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Criar conta</button>
+                            <a href="/login" type="button" class="btn btn-secondary">Voltar</a>
+                          </form>
+                        </div>
+                      </div>
+
+                </div>
+
+                <div class="col-lg-2"></div>
+            </div>
+        </div>
+
+        <%- include('includes/footer') %>

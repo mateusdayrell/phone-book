@@ -1,0 +1,28 @@
+<% if (errors.length > 0) { %>
+    <div class="row">
+        <div class="col my-2">
+            <div class="alert alert-danger">
+                <p>Erro ao realizar cadastro:</p>
+                <ul>
+                    <% errors.forEach(error => { %>
+                        <li><%= error %></li>
+                    <% }); %>
+                </ul>
+            </div>
+        </div>
+    </div>
+<% } %>
+
+<% if (success.length > 0) { %>
+    <div class="row">
+        <div class="col my-2">
+            <div class="alert alert-success">
+                <ul>
+                    <% success.forEach(scs => { %>
+                        <li><%= scs %></li>
+                    <% }); %>
+                </ul>
+            </div>
+        </div>
+    </div>
+<% } %>
