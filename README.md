@@ -6,7 +6,7 @@
 
 Aplication to manage your phone-book,  inspired on [Luiz Otávio Miranda](https://www.otaviomiranda.com.br/2017/meus-cursos/) project, developed to pratice NodeJs.<br>
 
-## Tecnologies used <br>
+## Technologies used <br>
 Click to access the documentation: [NodeJs](https://nodejs.org/en/), [Express](https://expressjs.com/pt-br/), [MongoDB](https://www.mongodb.com/pt-br), [EJS](https://ejs.co/) and [Bootstrap](https://getbootstrap.com/).
 
 ## Project setup <br>
