@@ -1,14 +1,37 @@
 const User = require('../models/UserModel')
 
 const index = (req, res) => {
-    res.render('login')
+    if(req.session.user) return res.redirect('/')
+    return res.render('login')
 }
 
-const auth = (req, res) => {
-    const user = new User(req.body)
+const login = async (req, res) => {
+    try {
+        const login = new User(req.body)
+        await login.authenticate()
+        if(login.errors.length > 0) {
+            req.flash('errors', login.errors)
+            req.session.save(() => res.redirect('/login'))
+            return
+        }
+
+        req.flash('success', 'Usuário autenticado com sucesso.')
+        
+        req.session.user = login.user //create a session for the user
+        req.session.save(() => res.redirect('/'))
+
+    } catch (error) {
+        console.log(error)
+        return res.render('error')
+    }
+}
+
+const logout = (req, res) => {
+    req.session.destroy(() => res.redirect('/login'))
 }
 
 module.exports = {
     index,
-    auth,
+    login,
+    logout,
 }

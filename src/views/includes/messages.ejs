@@ -1,13 +1,10 @@
 <% if (errors.length > 0) { %>
     <div class="row">
-        <div class="col my-2">
+        <div class="col">
             <div class="alert alert-danger">
-                <p>Erro ao cadastrar usuário:</p>
-                <ul>
                     <% errors.forEach(error => { %>
-                        <li><%= error %></li>
+                        <span><%= error %></span><br>
                     <% }); %>
-                </ul>
             </div>
         </div>
     </div>
@@ -15,13 +12,11 @@
 
 <% if (success.length > 0) { %>
     <div class="row">
-        <div class="col my-2">
+        <div class="col">
             <div class="alert alert-success">
-                <ul>
                     <% success.forEach(scs => { %>
-                        <li><%= scs %></li>
+                        <span><%= scs %></span><br>
                     <% }); %>
-                </ul>
             </div>
         </div>
     </div>

@@ -35,22 +35,41 @@ class User {
         }
     }
 
+    async authenticate() {
+        this.validate()
+        if(this.errors.length > 0) return
+        try{
+            const user = await UserModel.findOne({email: this.body.email})
+            if(!user) {
+                this.errors.push('Usuário não encontrado')
+                return
+            }
+            if(!await bcrypt.compareSync(this.body.password, user.password)) {
+                this.errors.push('Senha incorreta')
+                return
+            }
+            this.user = user
+        } catch(err) {
+            this.errors.push(err.message)
+        }
+    }
+
     validate() {
         this.cleanUp()
-        if(!validator.isLength(this.body.name, {min: 2, max: 30})) {
-            this.errors.push('O nome deve ter entre 2 and 30 caracteres')
+        if(this.body.name && !validator.isLength(this.body.name, {min: 2, max: 30})) {
+            this.errors.push('O nome deve ter entre 2 e 30 caracteres')
         }
         if(!validator.isEmail(this.body.email)) {
             this.errors.push('O email não é válido')
         }
         if(!validator.isLength(this.body.password, {min: 8, max: 30})) {
-            this.errors.push('A senha deve ter entre 8 and 30 caracteres')
+            this.errors.push('A senha deve ter entre 8 e 30 caracteres')
         }
     }
 
     async exists() {
-        const user = await UserModel.findOne({email: this.body.email})
-        if(user) this.errors.push('O email já está cadastrado')
+        this.user = await UserModel.findOne({email: this.body.email})
+        if(this.user) this.errors.push('O email já está cadastrado')
     }
 
     cleanUp() {

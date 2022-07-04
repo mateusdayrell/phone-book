@@ -11,6 +11,8 @@ route.post('/', homeController.store)
 
 // LOGIN
 route.get('/login/', loginController.index)
+route.post('/login/', loginController.login)
+route.get('/logout/', loginController.logout)
 
 // REGISTER
 route.get('/register/', userController.create)
