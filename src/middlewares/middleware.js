@@ -14,3 +14,9 @@ exports.csrfMiddleware = (req, res, next) => {
     res.locals.csrfToken = req.csrfToken()
     next()
 }
+
+exports.requiredLogin = (req, res, next) => {
+    if (req.session.user) return next()
+    req.flash('errors', 'Você precisa estar logado para acessar essa página.')
+    return res.redirect('/login')
+}
