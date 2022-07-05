@@ -12,28 +12,32 @@
 
                     <div class="card mt-4">
                         <div class="card-body">
-                          <form action="/contato/store" method="POST">
-                            <input type="hidden" name="_csrf" value=<%= csrfToken %>>
-                            <div class="mb-3">
-                              <label class="form-label">Nome</label>
-                              <input type="text" class="form-control" name="name" value=<%= contato.name %>>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Sobrenome</label>
-                                <input type="text" class="form-control" name="lastName" value=<%= contato.lastName %>>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">E-mail</label>
-                                <input type="email" class="form-control" name="email" value=<%= contato.email %>>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Telefone</label>
-                                <input type="text" class="form-control" name="phone" value=<%= contato.phone %>>
-                            </div>
+                          <% if (contato._id) { %>
+                            <form action="/contato/edit/<%= contato._id %>" method="POST">
+                          <% } else { %>
+                            <form action="/contato/store" method="POST">
+                          <% } %>
+                              <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+                              <div class="mb-3">
+                                <label class="form-label">Nome</label>
+                                <input type="text" class="form-control" name="name" value=<%= contato.name %>>
+                              </div>
+                              <div class="mb-3">
+                                  <label class="form-label">Sobrenome</label>
+                                  <input type="text" class="form-control" name="lastName" value=<%= contato.lastName %>>
+                              </div>
+                              <div class="mb-3">
+                                  <label class="form-label">E-mail</label>
+                                  <input type="email" class="form-control" name="email" value=<%= contato.email %>>
+                              </div>
+                              <div class="mb-3">
+                                  <label class="form-label">Telefone</label>
+                                  <input type="text" class="form-control" name="phone" value=<%= contato.phone %>>
+                              </div>
 
-                            <button type="submit" class="btn btn-primary">Salvar</button>
-                            <a href="/login" type="button" class="btn btn-secondary">Voltar</a>
-                          </form>
+                              <button type="submit" class="btn btn-primary">Salvar</button>
+                              <a href="/login" type="button" class="btn btn-secondary">Voltar</a>
+                            </form>
                         </div>
                       </div>
 
