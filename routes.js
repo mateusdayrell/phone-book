@@ -11,7 +11,6 @@ const { requiredLogin } = require('./src/middlewares/middleware')
 
 // HOME
 route.get('/', homeController.index)
-route.post('/', homeController.store)
 
 // CONTATO
 route.get('/', contatoController.index)

@@ -1,22 +1,11 @@
-const HomeModel = require('../models/HomeModel')
+const Contato = require('../models/ContatoModel')
 
-// HomeModel.find()  
-//     .then(data => {console.log(data)})
-//     .catch(err => console.log(err))
-
-const index = (req, res) => {
-    res.render('index', {
-        title: 'Home',
-        numbers: [1, 2, 3, 4, 5]
-    });
-}
-
-const store = (req, res) => {
-    res.send(req.body)
-    return
+const index = async(req, res) => {
+    let contatos = new Contato
+    contatos = await contatos.getContatos()
+    res.render('index', { contatos });
 }
 
 module.exports = {
     index,
-    store
 }
