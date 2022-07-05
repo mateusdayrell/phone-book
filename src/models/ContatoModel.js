@@ -33,6 +33,33 @@ class Contato {
         }
     }
 
+    async update(id) {
+        if(typeof id !== 'string') return
+        this.validate()
+        if(this.errors.length > 0) return
+        try {
+            const contato = await ContatoModel.findByIdAndUpdate(id, this.body, {new: true})
+            if(!contato) {
+                this.errors.push('Contato não encontrado')
+                return
+            }
+            this.contato = contato    
+        } catch (err) {
+            this.errors.push(err.message)
+        }
+    }
+
+    async delete(id) {
+        if(typeof id !== 'string') return
+        try {
+            const contato = await ContatoModel.findOneAndDelete({_id: id})
+            return contato
+        } catch (err) {
+            this.errors.push(err.message)
+        }
+    }
+
+
     validate() {
         this.cleanUp()
         if(!this.body.name){
@@ -72,15 +99,19 @@ class Contato {
         }
     }
 
-    async getById(id) {
-        console.log('MODELLL')
+    async getContatos(id) {
         try{
-            if(typeof id !== 'string') return
-            const contato = await ContatoModel.findById(id)
-            if(!contato) {
-                this.errors.push('Contato não encontrado')
-            }
-            return contato
+            if(id) {
+                if (typeof id !== 'string') return
+
+                const contato = await ContatoModel.findById(id)
+                if (!contato) this.errors.push('Contato não encontrado')
+
+                return contato
+            } else {
+                const contatos = await ContatoModel.find().sort({created_at: 1})
+                return contatos
+            }            
         } catch(err) {
             this.errors.push(err.message)
         }

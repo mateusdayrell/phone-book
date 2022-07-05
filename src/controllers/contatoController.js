@@ -32,7 +32,7 @@ const edit = async(req, res) => {
     if(!req.params.id) res.render('error')
     try {
         let contato = new Contato()
-        contato = await contato.getById(req.params.id)
+        contato = await contato.getContatos(req.params.id)
         if(!contato) return res.render('error')
         res.render('contato', { contato })
 
@@ -42,12 +42,50 @@ const edit = async(req, res) => {
     }
 }
 
-const update = (req, res) => {}
+const update = async (req, res) => {
+    if(!req.params.id) res.render('error')
+    try {
+        const contato = new Contato(req.body)
+        await contato.update(req.params.id)
+
+        if(contato.errors.length > 0) {
+            req.flash('errors', contato.errors)
+            req.session.save(() => res.redirect(`/contato/edit/${contato.contato._id}`))
+            return
+        }
+
+        req.flash('success', 'Contato atualizado com sucesso.')
+        req.session.save(() => res.redirect(`/contato/edit/${contato.contato._id}`))
+    } catch (error) {
+        console.log(error)
+        res.render('error')
+    }
+};
+
+const destroy = async(req, res) => {
+    if(!req.params.id) res.render('error')
+    try {
+        let contato = new Contato()
+        contato = await contato.delete(req.params.id)
+        
+        if(!contato) {
+            req.flash('errors', contato.errors)
+            req.session.save(() => res.redirect('/'))
+            return
+        }
+        req.flash('success', 'Contato apagado com sucesso.')
+        req.session.save(() => res.redirect('/'))
+    } catch (error) {
+        console.log(error)
+        res.render('error')
+    }
+};
 
 module.exports = {
     index,
     create,
     store,
     edit,
-    update
+    update,
+    destroy
 }
