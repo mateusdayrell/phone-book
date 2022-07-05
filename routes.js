@@ -18,7 +18,8 @@ route.get('/', contatoController.index)
 route.get('/contato/create', requiredLogin, contatoController.create)
 route.post('/contato/store', requiredLogin, contatoController.store)
 route.get('/contato/edit/:id', requiredLogin, contatoController.edit)
-route.put('/contato/edit/:id', requiredLogin, contatoController.update)
+route.post('/contato/edit/:id', requiredLogin, contatoController.update)
+route.get('/contato/delete/:id', requiredLogin, contatoController.destroy)
 
 // LOGIN
 route.get('/login/', loginController.index)
