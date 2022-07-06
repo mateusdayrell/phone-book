@@ -16,7 +16,9 @@ app.use(express.urlencoded({ extended: true }))             // for parsing forms
 app.use(express.json())                                     // for parsing JSON data to the application
 app.use(express.static(path.resolve(__dirname, 'public'))) // for serving static files (img, js, css) to the application
 
-app.use(helmet()) // Helmet helps you secure your Express apps by setting various HTTP headers.
+app.use(helmet({
+    contentSecurityPolicy: false
+})) // Helmet helps you secure your Express apps by setting various HTTP headers.
 
 // CONNECTING TO DATABASE MONGODB
 mongoose.connect(process.env.CONNECTIONSTRING, { useNewUrlParser: true, useUnifiedTopology: true })
