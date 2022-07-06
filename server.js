@@ -14,7 +14,9 @@ require('dotenv').config()
 
 app.use(express.urlencoded({ extended: true }))             // for parsing forms to the apllication
 app.use(express.json())                                     // for parsing JSON data to the application
-app.use(express.static(path.resolve(__dirname, 'public'))) // for serving static files (img, js, css) to the application
+ app.use(express.static(path.resolve(__dirname, 'public'))) // for serving static files (img, js, css) to the application
+app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')))
+app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')))
 
 app.use(helmet({
     contentSecurityPolicy: false
@@ -35,7 +37,7 @@ const sessiopnOptions = session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+        maxAge: 1000 * 60 * 10, // 10 minutes
         httpOnly: true,    
     }
 })
