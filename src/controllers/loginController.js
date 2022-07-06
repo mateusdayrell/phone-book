@@ -14,6 +14,8 @@ const login = async (req, res) => {
             req.session.save(() => res.redirect('/login'))
             return
         }
+
+        req.flash('success', 'Usuário autenticado com sucesso.')
         
         req.session.user = login.user //create a session for the user
         req.session.save(() => res.redirect('/'))
