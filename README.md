@@ -1,7 +1,3 @@
-<h4 align="center"> 
-	🚧  In development...  🚧
-</h4>
-
 # Phone-book
 
 Aplication to manage your phone-book,  inspired on [Luiz Otávio Miranda](https://www.otaviomiranda.com.br/2017/meus-cursos/) project, developed to pratice NodeJs.<br>
@@ -23,7 +19,7 @@ cp .env.example .env
 
 ### Serve aplication
 ```
-npm run watch
+npm start
 ```
 
 ## Helpper
