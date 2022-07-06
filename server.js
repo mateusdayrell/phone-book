@@ -14,7 +14,10 @@ require('dotenv').config()
 
 app.use(express.urlencoded({ extended: true }))             // for parsing forms to the apllication
 app.use(express.json())                                     // for parsing JSON data to the application
-app.use(express.static(path.resolve(__dirname, 'public'))) // for serving static files (img, js, css) to the application
+// app.use(express.static(path.resolve(__dirname, 'public'))) // for serving static files (img, js, css) to the application
+app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')))
+app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')))
+app.use('/js', express.static(path.join(__dirname, 'node_modules/jquery/dist')))
 
 app.use(helmet({
     contentSecurityPolicy: false
