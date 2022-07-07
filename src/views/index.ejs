@@ -5,13 +5,14 @@
             <div class="row">
                 <div class="col-lg-2"></div>
 
-                <div class="col-lg-8 my-2">
-                    <h1 class="display-3 text-center">Agenda</h1>
-                    <p class="text-center lead">Lista de contatos</p>
+                <div class="col-lg-8">
+                    <h1 class="display-3 text-center my-4">Agenda</h1>
+                    
 
                     <%- include('includes/messages') %>
 
-                    <div class="card card-dark my-5">
+                    <div class="card my-4">
+                        <div class="card-header"><p class="text-center mb-lg-0 lead">Lista de contatos</p></div>
                         <div class="card-body table-responsive p-0">
                             <% if(contatos.length > 0) { %>
                             <table class="table table-hover">
@@ -31,15 +32,15 @@
                                         <th scope="row" colspan="4">A</th>
                                     </tr> -->
                                     <% contatos.forEach(contato => { %>
-                                        <tr>
+                                        <tr class="text-center">
                                             <td scope="row"><%= contato.name %></td>
                                             <td><%= contato.lastName %></td>
                                             <td><%= contato.phone %></td>
                                             <td><%= contato.email %></td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <a class="btn btn-primary" href="/contatos/<%= contato.id %>/edit">Editar</a>
-                                                    <a class="btn btn-danger" href="/contatos/<%= contato.id %>/delete">Excluir</a>
+                                                    <a href="/contato/edit/<%= contato._id%>" class="btn btn-primary" type="button">Editar</a>
+                                                    <a href="/contato/delete/<%= contato._id%>" class="btn btn-danger" type="button">Excluir</a>
                                                 </div>
                                             </td>
                                         </tr>
