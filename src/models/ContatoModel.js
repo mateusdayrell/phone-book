@@ -6,6 +6,7 @@ const ContatoSchema = new mongoose.Schema({
     lastName: {type: String, required: false, default: ''},
     email: {type: String, required: false, default: ''},
     phone: {type: String, required: false, default: ''},
+    user_id: {type: String, required: true},
     created_at: {type: Date, default: Date.now},
 })
 
@@ -13,8 +14,8 @@ const ContatoModel = mongoose.model('Contato', ContatoSchema)
 
 // Using constructor function, prototypes
 class Contato {
-    constructor(body) {
-        this.body = body
+    constructor(body, user) {
+        user ? this.body = {...body, user_id: user} : this.body = body
         this.errors = []
         this.contato = null
     }
@@ -99,15 +100,20 @@ class Contato {
         }
     }
 
-    async getContatos(id) {
+    async getContatos(id, index) {
         try{
             if(id) {
                 if (typeof id !== 'string') return
 
-                const contato = await ContatoModel.findById(id)
-                if (!contato) this.errors.push('Contato não encontrado')
-
-                return contato
+                if(index) { // Get all contatos from user
+                    const contatos = await ContatoModel.find({user_id: id}) 
+                    return contatos
+                }
+                else { // Get contato by id
+                    const contato = await ContatoModel.findById(id)           
+                    if (!contato) this.errors.push('Contato não encontrado')
+                    return contato
+                }
             } else {
                 const contatos = await ContatoModel.find().sort({created_at: 1})
                 return contatos

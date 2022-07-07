@@ -11,7 +11,7 @@ const create = (req, res) => {
 
 const store = async (req, res) => {
     try {
-        const contato = new Contato(req.body)
+        const contato = new Contato(req.body, req.session.user._id)
         await contato.register()
 
         if(contato.errors.length > 0) {
@@ -32,6 +32,7 @@ const edit = async(req, res) => {
     if(!req.params.id) res.render('error')
     try {
         let contato = new Contato()
+        console.log('Entrou')
         contato = await contato.getContatos(req.params.id)
         if(!contato) return res.render('error')
         res.render('contato', { contato })
