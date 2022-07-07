@@ -11,17 +11,19 @@
 
                     <%- include('includes/messages') %>
 
-                    <div class="responsive-table mt-4">
-                        <% if(contatos.length > 0) { %>
-                            <table class="table table-hover my-3">
+                    <div class="card card-dark my-5">
+                        <div class="card-body table-responsive p-0">
+                            <% if(contatos.length > 0) { %>
+                            <table class="table table-hover">
+                        
+                            <!-- <table class="table table-hover my-3"> -->
                                 <thead>
-                                    <tr>
-                                        <th scope="col">Nome</th>
+                                    <tr class="text-center">
+                                        <th  scope="col">Nome</th>
                                         <th scope="col">Sobrenome</th>
                                         <th scope="col">Telefone</th>
                                         <th scope="col">Email</th>
-                                        <th></th>
-                                        <th></th>
+                                        <th scope="col">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -35,10 +37,10 @@
                                             <td><%= contato.phone %></td>
                                             <td><%= contato.email %></td>
                                             <td>
-                                                <a href="/contato/edit/<%= contato._id%>" class="btn btn-primary rounded-pill" type="button">Editar</a>
-                                            </td>
-                                            <td>
-                                                <a href="/contato/delete/<%= contato._id%>" class="btn btn-danger rounded-pill"">Apagar</a>
+                                                <div class="btn-group">
+                                                    <a class="btn btn-primary" href="/contatos/<%= contato.id %>/edit">Editar</a>
+                                                    <a class="btn btn-danger" href="/contatos/<%= contato.id %>/delete">Excluir</a>
+                                                </div>
                                             </td>
                                         </tr>
                                     <% }) %>
@@ -52,6 +54,7 @@
                             </div>
                         <% } %>
                     </div>
+                </div>
                     <% if(contatos.length > 0) { %>
                         <a href="/contato/create" class=" text center btn btn-primary rounded-pill" type="button">Cadastrar</a>
                     <% } %>
