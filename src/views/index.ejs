@@ -5,23 +5,26 @@
             <div class="row">
                 <div class="col-lg-2"></div>
 
-                <div class="col-lg-8 my-2">
-                    <h1 class="display-3 text-center">Agenda</h1>
-                    <p class="text-center lead">Lista de contatos</p>
+                <div class="col-lg-8">
+                    <h1 class="display-3 text-center my-4">Agenda</h1>
+                    
 
                     <%- include('includes/messages') %>
 
-                    <div class="responsive-table mt-4">
-                        <% if(contatos.length > 0) { %>
-                            <table class="table table-hover my-3">
+                    <div class="card my-4">
+                        <div class="card-header"><p class="text-center mb-lg-0 lead">Lista de contatos</p></div>
+                        <div class="card-body table-responsive p-0">
+                            <% if(contatos.length > 0) { %>
+                            <table class="table table-hover">
+                        
+                            <!-- <table class="table table-hover my-3"> -->
                                 <thead>
-                                    <tr>
-                                        <th scope="col">Nome</th>
+                                    <tr class="text-center">
+                                        <th  scope="col">Nome</th>
                                         <th scope="col">Sobrenome</th>
                                         <th scope="col">Telefone</th>
                                         <th scope="col">Email</th>
-                                        <th></th>
-                                        <th></th>
+                                        <th scope="col">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -29,16 +32,16 @@
                                         <th scope="row" colspan="4">A</th>
                                     </tr> -->
                                     <% contatos.forEach(contato => { %>
-                                        <tr>
+                                        <tr class="text-center">
                                             <td scope="row"><%= contato.name %></td>
                                             <td><%= contato.lastName %></td>
                                             <td><%= contato.phone %></td>
                                             <td><%= contato.email %></td>
                                             <td>
-                                                <a href="/contato/edit/<%= contato._id%>" class="btn btn-primary rounded-pill" type="button">Editar</a>
-                                            </td>
-                                            <td>
-                                                <a href="/contato/delete/<%= contato._id%>" class="btn btn-danger rounded-pill"">Apagar</a>
+                                                <div class="btn-group">
+                                                    <a href="/contato/edit/<%= contato._id%>" class="btn btn-primary" type="button">Editar</a>
+                                                    <a href="/contato/delete/<%= contato._id%>" class="btn btn-danger" type="button">Excluir</a>
+                                                </div>
                                             </td>
                                         </tr>
                                     <% }) %>
@@ -52,6 +55,7 @@
                             </div>
                         <% } %>
                     </div>
+                </div>
                     <% if(contatos.length > 0) { %>
                         <a href="/contato/create" class=" text center btn btn-primary rounded-pill" type="button">Cadastrar</a>
                     <% } %>

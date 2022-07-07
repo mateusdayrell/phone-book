@@ -1,8 +1,8 @@
 const Contato = require('../models/ContatoModel')
 
 const index = async(req, res) => {
-    let contatos = new Contato
-    contatos = await contatos.getContatos()
+    const contatoModel = new Contato
+    const contatos = await contatoModel.getContatos(req.session.user._id, true)
     res.render('index', { contatos });
 }
 
