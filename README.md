@@ -1,5 +1,8 @@
-# Phone-book
+# Phone-book :notebook_with_decorative_cover:
 
+:round_pushpin: [To check the project website click here!](http://35.199.125.204/)
+
+## Description
 Aplication to manage your phone-book,  inspired on [Luiz Otávio Miranda](https://www.otaviomiranda.com.br/2017/meus-cursos/) project, developed to pratice NodeJs.<br>
 
 ## Technologies used <br>
