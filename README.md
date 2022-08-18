@@ -1,4 +1,4 @@
-# Phone-book :notebook_with_decorative_cover:
+# Phone-book :green_book:
 
 :round_pushpin: [To check the project website click here!](http://35.199.125.204/)
 
@@ -9,6 +9,17 @@ Aplication to manage your phone-book,  inspired on [Luiz Otávio Miranda](https:
 Click to access the documentation: [NodeJs](https://nodejs.org/en/), [Express](https://expressjs.com/pt-br/), [MongoDB](https://www.mongodb.com/pt-br), [EJS](https://ejs.co/) and [Bootstrap](https://getbootstrap.com/).
 
 ## Project setup <br>
+
+### Clone repository
+```
+git clone https://github.com/mateusdayrell/phone-book.git
+```
+
+### Access the project folder
+```
+cd phone-book
+```
+
 
 ### Install dependencies
 ```
